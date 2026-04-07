@@ -1,7 +1,5 @@
 "use client"
-export async function generateStaticParams() {
-  return residentialProjects.map((p) => ({ id: p.id }))
-}
+
 import { useState, use } from "react"
 import { notFound } from "next/navigation"
 import Image from "next/image"
