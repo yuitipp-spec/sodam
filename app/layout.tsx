@@ -22,8 +22,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://sodamspace.com'),
   verification: {
   google: 'S8uuX39bwLMQIZawrRNTQMZlhzkU8QzR5pjmJLttg5w'
-  other: {
-    'naver-site-verification': '114b240e8f5d31c9d94c8e6aedd8a4f646136b9e'}
   },
   openGraph: {
     title: '소담인테리어 | 주거공간 인테리어 전문',
