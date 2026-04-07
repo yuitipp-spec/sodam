@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: ['인테리어', '리모델링', '주거공간', '상업공간', '인테리어 디자인', '소담인테리어', '부산인테리어', '인테리어견적'],
   metadataBase: new URL('https://sodamspace.com'),
   verification: {
-  google: '<"O08VMR72WKlIQYQU-hdI_6FAeZAtt3aek5bRJOZJZag" />',
+  google: '<"<meta name="google-site-verification" content="O08VMR72WKlIQYQU-hdI_6FAeZAtt3aek5bRJOZJZag" />" />',
 },
   openGraph: {
     title: '소담인테리어 | 주거공간 인테리어 전문',
