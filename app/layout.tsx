@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description: '인간과 환경, 문화와 기술의 고감을 주요 디자인 컨셉으로 하여, 미래 지향적인 시각, 좋은 감각, 적극적인 의지, 진정한 프로페셔널로 고객의 라이프 스타일에 맞춤 프로젝트를 완성시키고 있습니다.',
   keywords: ['인테리어', '리모델링', '주거공간', '상업공간', '인테리어 디자인', '소담인테리어', '부산인테리어', '인테리어견적'],
   metadataBase: new URL('https://sodamspace.com'),
+  verification: {
+  google: '<"O08VMR72WKlIQYQU-hdI_6FAeZAtt3aek5bRJOZJZag" />',
+},
   openGraph: {
     title: '소담인테리어 | 주거공간 인테리어 전문',
     description: '고객의 라이프 스타일에 맞춘 주거·상업공간 인테리어 전문',
