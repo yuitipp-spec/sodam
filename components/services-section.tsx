@@ -8,19 +8,25 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion"
 const services = [
   {
     number: "01",
-    title: "Interior Business",
-    titleKo: "인테리어 시공",
+    title: "고객님의 소중한 공간에 가치를 더하다",
+    titleKo: "",
+    titleKoParts: [
+      { text: "소", bold: true },
+      { text: "중한 것을 " },
+      { text: "담", bold: true },
+      { text: "다" },
+    ],
     description:
-      "인간과 환경, 문화와 기술의 고감을 주요 디자인 컨셉으로 하여, 미래 지향적인 시각, 좋은 감각, 적극적인 의지, 진정한 프로페셔널로 고객의 라이프 스타일에 맞춤 프로젝트를 완성시키고 있습니다.",
+      "트렌디한 감각과 축적된 전문성을 바탕으로, 공간이 지닌 본래의 가능성을 끌어올립니다. 단순한 시공을 넘어 라이프스타일에 맞춘 디자인으로 공간의 가치를 새롭게 정의합니다.",
     image: "/images/business-interior.jpg",
     imagePosition: "right",
   },
   {
     number: "02",
-    title: "Remodeling Business",
-    titleKo: "리모델링 시공",
+    title: "같은 공간, 완전히 다른 삶",
+    titleKo: "소중한 것의 가치",
     description:
-      "이제 리모델링은 선택이 아닌 필수가 된 이 시대에 맞춰 개성있는 라이프스타일과 품격 있는 이상을 담아 세상에 단 하나뿐인 특별한 공간을 만들어 드리겠습니다.",
+      "공간이 바뀌면 일상이 달라집니다. 개성 있는 디자인과 품격 있는 마감, 그리고 정밀한 시공력으로 고객님의 공간을 세상에 단 하나뿐인 특별한 곳으로 만들어 드립니다.",
     image: "/images/business-remodeling.jpg",
     imagePosition: "left",
   },
@@ -84,9 +90,15 @@ function ServiceItem({
             <h3 className="text-2xl font-bold text-foreground">
               {service.title}
             </h3>
-            <p className="text-sm text-foreground/50 mt-1">
-              {service.titleKo}
-            </p>
+            {((service as { titleKoParts?: { text: string; bold?: boolean }[] }).titleKoParts || service.titleKo) && (
+              <p className="text-sm text-foreground/50 mt-1">
+                {(service as { titleKoParts?: { text: string; bold?: boolean }[] }).titleKoParts
+                  ? (service as { titleKoParts: { text: string; bold?: boolean }[] }).titleKoParts.map((part, i) =>
+                      part.bold ? <strong key={i} className="text-foreground/70">{part.text}</strong> : <span key={i}>{part.text}</span>
+                    )
+                  : service.titleKo}
+              </p>
+            )}
           </motion.div>
         </div>
 

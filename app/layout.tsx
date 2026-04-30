@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: '소담인테리어 | 주거공간 인테리어 전문',
-  description: ''부산 경남 대구 주거·상업공간 인테리어 전문업체. 고객 맞춤 설계와 합리적인 견적을 제공합니다.',
+  description: '부산 경남 대구 주거·상업공간 인테리어 전문업체. 고객 맞춤 설계와 합리적인 견적을 제공합니다.',
   keywords: ['인테리어', '리모델링', '주거공간', '상업공간', '인테리어 디자인', '소담인테리어', '부산인테리어', '인테리어견적'],
   metadataBase: new URL('https://sodamspace.com'),
   verification: {

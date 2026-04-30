@@ -10,7 +10,7 @@ import { motion, useInView } from "framer-motion"
 const portfolioItems = [
   {
     id: 1,
-    image: "/images/portfolio-1.jpg",
+    image: "/images/residential/project-1/화명카이저(시도디자인) (239).jpg",
     title: "화명동 롯데 카이저",
     category: "주거공간",
     area: "43평",
@@ -18,27 +18,27 @@ const portfolioItems = [
   },
   {
     id: 2,
-    image: "/images/portfolio-2.jpg",
+    image: "/images/residential/project-2/DSC01194.jpg",
+    title: "다대 롯데 몰운대 아파트 인테리어",
+    category: "주거공간",
+    area: "46평",
+    link: "/portfolio/residential/project-2",
+  },
+  {
+    id: 3,
+    image: "/images/commercial/project-1/KakaoTalk_20240829_144533669.jpg",
     title: "광안동 미용실",
     category: "상업공간",
     area: "20평",
     link: "/portfolio/commercial/project-1",
   },
   {
-    id: 3,
-    image: "/images/portfolio-3.jpg",
+    id: 4,
+    image: "/images/commercial/project-2/DSC06741.jpg",
     title: "양산 미용실",
     category: "상업공간",
     area: "60평",
     link: "/portfolio/commercial/project-2",
-  },
-  {
-    id: 4,
-    image: "/images/portfolio-4.jpg",
-    title: "원룸주택 실내인테리어",
-    category: "주거공간",
-    area: "18평",
-    link: "/portfolio/residential/project-2",
   },
 ]
 
@@ -96,9 +96,9 @@ export function PortfolioSection({ onOpenModal }: { onOpenModal: () => void }) {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <span className="font-serif font-light">INTERIOR</span>
+              <span className="font-serif font-light">인테리어</span>
               <br />
-              <span className="font-bold">PORTFOLIO</span>
+              <span className="font-bold">포트폴리오</span>
             </motion.h2>
             <motion.p
               className="mt-6 text-foreground/70 max-w-md"
@@ -118,7 +118,7 @@ export function PortfolioSection({ onOpenModal }: { onOpenModal: () => void }) {
                 className="mt-6 border-foreground/30 hover:bg-foreground hover:text-background transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <Link href="/portfolio/residential">READ MORE</Link>
+                <Link href="/portfolio/residential">더보기</Link>
               </Button>
             </motion.div>
           </div>
@@ -147,6 +147,7 @@ export function PortfolioSection({ onOpenModal }: { onOpenModal: () => void }) {
             </div>
           </motion.div>
         </div>
+
 
         {/* Portfolio Grid */}
         <motion.div

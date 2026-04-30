@@ -75,22 +75,6 @@ export function HeroSection({ onOpenModal }: { onOpenModal: () => void }) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Left Side Label */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
-      >
-        <div className="bg-muted/80 backdrop-blur-sm px-8 py-12 rounded-r-lg">
-          <p className="text-sm font-semibold tracking-widest text-foreground uppercase">
-            Commercial
-          </p>
-          <p className="text-sm font-semibold tracking-widest text-foreground uppercase">
-            Portfolio
-          </p>
-        </div>
-      </motion.div>
 
       {/* Main Content */}
       <div className="absolute inset-0 flex items-center justify-end z-10">
