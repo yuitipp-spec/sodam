@@ -31,25 +31,25 @@ export function ContactModal({
 
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    phone: "",
     privacyConsent: false,
   })
 
   const [formErrors, setFormErrors] = useState({
     name: "",
-    email: "",
+    phone: "",
     privacyConsent: "",
   })
 
-  const validateEmail = (email: string) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return re.test(email)
+  const validatePhone = (phone: string) => {
+    const re = /^[0-9-+\s]{8,}$/
+    return re.test(phone)
   }
 
   const validateForm = () => {
     const errors = {
       name: "",
-      email: "",
+      phone: "",
       privacyConsent: "",
     }
     let isValid = true
@@ -59,11 +59,11 @@ export function ContactModal({
       isValid = false
     }
 
-    if (!formData.email.trim()) {
-      errors.email = "이메일을 입력해주세요"
+    if (!formData.phone.trim()) {
+      errors.phone = "전화번호를 입력해주세요"
       isValid = false
-    } else if (!validateEmail(formData.email)) {
-      errors.email = "올바른 이메일 형식을 입력해주세요"
+    } else if (!validatePhone(formData.phone)) {
+      errors.phone = "올바른 전화번호 형식을 입력해주세요"
       isValid = false
     }
 
@@ -94,7 +94,7 @@ export function ContactModal({
         },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
+          phone: formData.phone,
           page: window.location.pathname,
           projectReference,
           timestamp: new Date().toISOString(),
@@ -123,8 +123,8 @@ export function ContactModal({
 
   const handleClose = () => {
     setStep("form")
-    setFormData({ name: "", email: "", privacyConsent: false })
-    setFormErrors({ name: "", email: "", privacyConsent: "" })
+    setFormData({ name: "", phone: "", privacyConsent: false })
+    setFormErrors({ name: "", phone: "", privacyConsent: "" })
     setError(null)
     onClose()
   }
@@ -163,21 +163,21 @@ export function ContactModal({
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">
-                  이메일 <span className="text-destructive">*</span>
+                <Label htmlFor="phone">
+                  전화번호 <span className="text-destructive">*</span>
                 </Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="example@email.com"
-                  value={formData.email}
+                  id="phone"
+                  type="tel"
+                  placeholder="010-0000-0000"
+                  value={formData.phone}
                   onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
+                    setFormData({ ...formData, phone: e.target.value })
                   }
-                  className={formErrors.email ? "border-destructive" : ""}
+                  className={formErrors.phone ? "border-destructive" : ""}
                 />
-                {formErrors.email && (
-                  <p className="text-sm text-destructive">{formErrors.email}</p>
+                {formErrors.phone && (
+                  <p className="text-sm text-destructive">{formErrors.phone}</p>
                 )}
               </div>
 

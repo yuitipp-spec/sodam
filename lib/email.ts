@@ -26,7 +26,7 @@ interface ContactEmailData {
 
 interface WaitlistEmailData {
   name: string
-  email: string
+  phone: string
   page?: string
   projectReference?: string
   timestamp: string
@@ -152,8 +152,8 @@ export async function sendWaitlistEmail(data: WaitlistEmailData) {
               <td style="padding: 14px 12px; color: #333; font-size: 14px; font-weight: 600;">${data.name}</td>
             </tr>
             <tr style="border-bottom: 1px solid #f0f0f0;">
-              <td style="padding: 14px 12px; color: #888; font-size: 13px; vertical-align: top;">이메일</td>
-              <td style="padding: 14px 12px; color: #333; font-size: 14px; font-weight: 600;">${data.email}</td>
+              <td style="padding: 14px 12px; color: #888; font-size: 13px; vertical-align: top;">전화번호</td>
+              <td style="padding: 14px 12px; color: #333; font-size: 14px; font-weight: 600;">${data.phone}</td>
             </tr>
             ${data.projectReference ? `
             <tr style="border-bottom: 1px solid #f0f0f0;">

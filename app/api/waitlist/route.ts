@@ -3,7 +3,7 @@ import { sendWaitlistEmail } from "@/lib/email"
 
 interface WaitlistEntry {
   name: string
-  email: string
+  phone: string
   page?: string
   projectReference?: string
   timestamp: string
@@ -14,18 +14,18 @@ export async function POST(request: Request) {
     const data: WaitlistEntry = await request.json()
 
     // Validate required fields
-    if (!data.name || !data.email) {
+    if (!data.name || !data.phone) {
       return NextResponse.json(
-        { error: "이름과 이메일은 필수입니다" },
+        { error: "이름과 전화번호는 필수입니다" },
         { status: 400 }
       )
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(data.email)) {
+    // Validate phone format
+    const phoneRegex = /^[0-9-+\s]{8,}$/
+    if (!phoneRegex.test(data.phone)) {
       return NextResponse.json(
-        { error: "올바른 이메일 형식을 입력해주세요" },
+        { error: "올바른 전화번호 형식을 입력해주세요" },
         { status: 400 }
       )
     }
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     console.log("Waitlist entry received and email sent:", {
       name: data.name,
-      email: data.email,
+      phone: data.phone,
       page: data.page,
       projectReference: data.projectReference,
       timestamp: data.timestamp,
