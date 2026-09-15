@@ -1,9 +1,17 @@
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const transporter = nodemailer.createTransport({
+  host: "smtp.naver.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.NAVER_EMAIL,
+    pass: process.env.NAVER_APP_PASSWORD,
+  },
+})
 
 const TO_EMAIL = process.env.NOTIFY_EMAIL || "your-email@example.com"
-const FROM_EMAIL = process.env.FROM_EMAIL || "onboarding@resend.dev"
+const FROM_EMAIL = process.env.NAVER_EMAIL || "your-email@example.com"
 
 interface ContactEmailData {
   name: string
@@ -61,7 +69,8 @@ export async function sendContactEmail(data: ContactEmailData) {
     ? timelineLabels[data.timeline] || data.timeline
     : "미입력"
 
-  const { error } = await resend.emails.send({
+  try {
+    await transporter.sendMail({
     from: FROM_EMAIL,
     to: TO_EMAIL,
     subject: `[소담] 새 상담 문의 - ${data.name}님`,
@@ -114,16 +123,16 @@ export async function sendContactEmail(data: ContactEmailData) {
         </div>
       </div>
     `,
-  })
-
-  if (error) {
-    console.error("Resend email error:", error)
-    throw new Error(`이메일 전송 실패: ${error.message}`)
+    })
+  } catch (error) {
+    console.error("Naver SMTP email error:", error)
+    throw new Error(`이메일 전송 실패: ${error instanceof Error ? error.message : String(error)}`)
   }
 }
 
 export async function sendWaitlistEmail(data: WaitlistEmailData) {
-  const { error } = await resend.emails.send({
+  try {
+    await transporter.sendMail({
     from: FROM_EMAIL,
     to: TO_EMAIL,
     subject: `[소담] 빠른 견적 요청 - ${data.name}님`,
@@ -166,10 +175,9 @@ export async function sendWaitlistEmail(data: WaitlistEmailData) {
         </div>
       </div>
     `,
-  })
-
-  if (error) {
-    console.error("Resend email error:", error)
-    throw new Error(`이메일 전송 실패: ${error.message}`)
+    })
+  } catch (error) {
+    console.error("Naver SMTP email error:", error)
+    throw new Error(`이메일 전송 실패: ${error instanceof Error ? error.message : String(error)}`)
   }
 }
