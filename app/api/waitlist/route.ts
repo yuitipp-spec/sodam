@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { sendWaitlistEmail } from "@/lib/email"
 
 interface WaitlistEntry {
   name: string
@@ -29,23 +30,10 @@ export async function POST(request: Request) {
       )
     }
 
-    // Here you would integrate with Notion API
-    // For now, we'll simulate a successful response
-    // In production, you would use the Notion SDK:
-    //
-    // import { Client } from "@notionhq/client"
-    // const notion = new Client({ auth: process.env.NOTION_TOKEN })
-    // await notion.pages.create({
-    //   parent: { database_id: process.env.NOTION_DATABASE_ID },
-    //   properties: {
-    //     Name: { title: [{ text: { content: data.name } }] },
-    //     Email: { email: data.email },
-    //     Page: { rich_text: [{ text: { content: data.page || "" } }] },
-    //     Timestamp: { date: { start: data.timestamp } },
-    //   },
-    // })
+    // Send email notification
+    await sendWaitlistEmail(data)
 
-    console.log("Waitlist entry received:", {
+    console.log("Waitlist entry received and email sent:", {
       name: data.name,
       email: data.email,
       page: data.page,

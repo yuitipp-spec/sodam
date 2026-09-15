@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { sendContactEmail } from "@/lib/email"
 
 interface ContactEntry {
   name: string
@@ -23,27 +24,10 @@ export async function POST(request: Request) {
       )
     }
 
-    // Here you would integrate with Notion API or send email notification
-    // For now, we'll simulate a successful response
-    //
-    // Example Notion integration:
-    // import { Client } from "@notionhq/client"
-    // const notion = new Client({ auth: process.env.NOTION_TOKEN })
-    // await notion.pages.create({
-    //   parent: { database_id: process.env.NOTION_CONTACT_DATABASE_ID },
-    //   properties: {
-    //     Name: { title: [{ text: { content: data.name } }] },
-    //     Contact: { rich_text: [{ text: { content: data.contact } }] },
-    //     SpaceType: { select: { name: data.spaceType || "기타" } },
-    //     Area: { number: parseInt(data.area || "0") },
-    //     Timeline: { select: { name: data.timeline || "미정" } },
-    //     Message: { rich_text: [{ text: { content: data.message || "" } }] },
-    //     FileCount: { number: data.fileCount || 0 },
-    //     Timestamp: { date: { start: data.timestamp } },
-    //   },
-    // })
+    // Send email notification
+    await sendContactEmail(data)
 
-    console.log("Contact form submitted:", {
+    console.log("Contact form submitted and email sent:", {
       name: data.name,
       contact: data.contact,
       spaceType: data.spaceType,
